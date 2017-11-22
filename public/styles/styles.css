@@ -1,0 +1,258 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+body{
+margin:0px !important;
+background: #fbfbfb;
+}
+
+body, h1, h2, h3 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+
+}
+
+body{
+    background:#f1f1f1;
+}
+
+a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
+  color: #444;
+  text-decoration:none;
+}
+
+a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover {
+  color: #687430;
+}
+
+@supports (input:placeholder-shown) {
+  input:not(:placeholder-shown) {
+  }
+}
+
+.top{
+background: #17c0d0;
+padding: 20px 0px;
+text-align: center;
+color: #fff;
+font-size: 25px;
+}
+
+
+ul.nav{
+background: #d1d1d1;
+padding: 15px 35px 10px 75%;
+margin: 0px;
+list-style: none;
+height: 35px;
+}
+
+ul.nav li{
+float: left;
+margin-right: 20px;
+padding-top:10px;
+}
+
+
+.signin{
+width: 500px;
+    background: #fafafa;
+    margin: 1% auto 4% auto;
+    padding: 0px 0px 20px 0px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0px 13px 60px 10px rgba(0,0,0,0.1);
+}
+
+.signin h1{
+    font-size: 30px;
+}
+
+.signin .name{
+overflow: hidden;
+background: #d9373d;
+padding: 18px 13%;
+margin: 30px 0px;
+}
+
+.signin .email{
+overflow: hidden;
+background: #35b729;
+padding: 18px 13%;
+margin: 30px 0px;
+}
+
+
+.signin .pass{
+overflow: hidden;
+background: #ff8d1f;
+padding: 18px 13%;
+margin: 30px 0px;
+
+}
+
+.signin p input{
+background: #2db1ff;
+color: #fff;
+font-size: 23px;
+padding: 10px 50px;
+height:auto;
+
+}
+
+.signin dt{
+float:left;
+top: 5px;
+position: relative;
+
+}
+
+.signin dd{
+float:right;
+padding-left:5px;
+}
+
+.signin input{
+border: 1px solid #fafafa;
+height: 25px;
+padding-left: 10px;
+
+}
+
+.field input{
+background:#d1d1d1;
+}
+
+.container div.welcome h2, .jumbo h2{
+text-align: center !important;
+padding: 10px;
+}
+
+ul.list li{
+text-decoration:none;
+width: 65%;
+margin: 0px auto;
+list-style:none;
+}
+
+
+ul.list li .item{
+float: left;
+}
+
+ul.list li a.item, table a.item{
+color: #008e9f;
+}
+
+table{
+text-transform:capitalize;}
+
+ul.list li a.side{
+margin: 0px 25px;
+}
+
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.alert-info {
+    width: 50%;
+    margin: auto;
+    color: #687430;
+    background-color: #e6ecca;
+    border-color: #aec251;
+}
+
+
+.btn-default {
+    border-color: #aec251;
+    color: #aec251;
+}
+
+.btn-default:hover {
+    background-color: #aec251;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.content-section {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+}
+
+.footer, .push {
+  clear: both;
+  height: 4em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/bg.jpg) no-repeat center center;
+    background-size: cover;
+    height: 100%;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.topnav {
+    font-size: 14px;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
+.field{
+margin:20px 0px;
+}
+
+.field label{
+margin-right:20px;
+}
+
+div.signin input#btn, .add a{
+background: #2db1ff;
+color: #fff;
+font-size: 18px;
+padding: 8px 40px;
+height: auto;
+text-transform: capitalize;
+margin: 20px 0px;
+}
