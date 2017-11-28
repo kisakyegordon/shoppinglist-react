@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import superagent from 'superagent';
+import { PropTypes } from 'prop-types';
+// import superagent from 'superagent';
 
 
 class RegisterForm extends Component{
@@ -17,15 +18,17 @@ class RegisterForm extends Component{
 
     onSubmit(e){
         e.preventDefault();
-        superagent
-            .post('http://127.0.0.1:5000/auth/register')
-            .send({ email: this.state.email, country_town: this.state.country_town, password: this.state.password })
-            .end((err, res) => {
-                if(err){
-                    this.setState({ errorMessage : 'Authentication Failed'}); return;
-                }
-                console.log('res.body:', res.body)
-            });
+
+        this.props.registerRequest(this.state);
+        // superagent
+        //     .post('http://127.0.0.1:5000/auth/register')
+        //     .send({ email: this.state.email, country_town: this.state.country_town, password: this.state.password })
+        //     .end((err, res) => {
+        //         if(err){
+        //             this.setState({ errorMessage : 'Authentication Failed'}); return;
+        //         }
+        //         console.log('res.body:', res.body)
+        //     });
 
     }
 
@@ -49,5 +52,10 @@ class RegisterForm extends Component{
         );
     }
 }
+
+RegisterForm.propTypes = {
+    registerRequest: PropTypes.func.isRequired
+}
+
 
 export default RegisterForm;
