@@ -3,21 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "jest": "^22.0.4",
+    "jest-cli": "^22.0.4",
+    "material-ui": "^0.20.0",
+    "material-ui-pagination": "^1.1.6",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "react": "^16.2.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
+    "react-scripts": "^1.0.17",
+    "react-tap-event-plugin": "^3.0.2",
+    "react-test-renderer": "^16.2.0",
+    "react-toastify": "^3.2.1",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",
-    "superagent": "^3.8.1"
+    "superagent": "^3.8.1",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1"
   }
 }

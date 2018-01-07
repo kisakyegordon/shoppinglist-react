@@ -42,7 +42,7 @@ font-size: 25px;
 
 ul.nav{
 background: #d1d1d1;
-padding: 15px 35px 10px 75%;
+padding: 15px 35px 10px 70%;
 margin: 0px;
 list-style: none;
 height: 35px;
@@ -55,18 +55,54 @@ padding-top:10px;
 }
 
 
+.GtglAe{
+    display: flex;
+    justify-content: space-between;
+    margin: auto 97px;
+    align-items: center;
+}
+
+.GtglAe .text a{
+    font-size: 14px;
+    color: #17c0d0;
+}
+
+.Gaga{
+    width: 55%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 .signin{
-width: 500px;
+    width: 450px;
     background: #fafafa;
-    margin: 1% auto 4% auto;
+    margin: 2% auto 4% auto;
     padding: 0px 0px 20px 0px;
     text-align: center;
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: 0px 13px 60px 10px rgba(0,0,0,0.1);
 }
 
+.signin .stepper button, .signin .stepper div{
+    min-width:60px !important;
+}
+
+.signin2{
+    width: 75%;
+        background: #fafafa;
+        margin: 1% auto 4% auto;
+        padding: 0px 0px 0px 0px;
+        text-align: center;
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: 0px 13px 60px 10px rgba(0,0,0,0.1);
+    }
+
 .signin h1{
-    font-size: 30px;
+    ffont-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
 }
 
 .signin .name{
@@ -255,4 +291,101 @@ padding: 8px 40px;
 height: auto;
 text-transform: capitalize;
 margin: 20px 0px;
+}
+
+/*------------------------------
+        TITLE REGION
+------------------------------*/
+
+.top-title{
+    display: flex;
+    justify-content: space-around;
+}
+
+.title .button{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.top-title p{
+    margin: 8px 0px 4px 0px;
+    font-size: 11px;
+    color: #555;
+}
+
+/*------------------------------
+        TABLE
+------------------------------*/
+
+table thead tr th:nth-child(1), table tbody tr td:nth-child(1){
+    display: none;
+}
+
+table thead tr th{
+    text-align: center !important;
+}
+
+table tbody tr th{
+    text-align: center !important;
+}
+
+table thead th div{
+    display: none;
+}
+
+table thead tr th {
+    color:#000 !important;
+    font-weight: 600 !important; 
+}
+
+table tbody tr td div{
+    display: none;
+}
+
+table tbody button svg{
+    height:18px !important;
+    width:18px !important;
+}
+
+table tbody button span{
+    font-size: 12px !important;
+}
+
+table tbody tr a{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+table tbody tr a:hover{
+    color:rgb(0, 188, 212);
+}
+
+/*------------------------------
+        FOOTER
+------------------------------*/
+.footer-in{
+    width: 92%;
+    margin: auto;
+}
+.footer{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 25px;
+    background: #222;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 1rem 0px;
+}
+
+.footer p{
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    color: #fff;
+    font-size: 13px;
+    display: flex;
+    padding: 0;
+    margin: 0;
 }

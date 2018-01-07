@@ -1,9 +1,36 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Header extends Component{
+
+
+    isAuthenticated() {
+        const token = localStorage.getItem('token');
+        return token && token.length > 10;
+    }
     render (){
+        let logged = false;
+
+        const guestLinks = (
+            <ul className="nav navbar-nav navbar-right">
+                <li> <NavLink to="/" activeClassName="active"> Home </NavLink> </li>
+                <li> <NavLink to="/login" activeClassName="active"> Login </NavLink> </li>
+                <li> <NavLink to="/register" activeClassName="active"> Register </NavLink></li> 
+            </ul>
+        );
+
+        const userLinks = (
+            <ul className="nav navbar-nav navbar-right">
+                <li> <NavLink to="/" activeClassName="active"> Home </NavLink> </li>
+                <li> <NavLink to="/shoppinglists" activeClassName="active"> Dashboard </NavLink> </li>
+                <li> <NavLink to="/logout" activeClassName="active"> Logout </NavLink> </li>
+                {/* <li> <NavLink to="/reset" activeClassName="active"> Reset Password </NavLink> </li> */}
+            </ul>
+        );
+
         return (
+
+            
             <div>
                 <div>
                     <div className="top">
@@ -12,17 +39,12 @@ class Header extends Component{
 
                     <nav className="navbar navbar-default navbar-fixed-top topnav" role="navigation">
                     <div className="container topnav">
-                    <div className="navbar-header">
-                    </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    {
+                        this.isAuthenticated() ? userLinks : guestLinks
+                    }
                         
-                    <ul className="nav navbar-nav navbar-right">
-                    <li> <Link to='/'> Home </Link> </li>
-                    <li> <Link to='/login'> Login </Link> </li>
-                    <li> <Link to='/register'> Register </Link></li> 
-                    <li> <Link to='/items'> View Items </Link></li> 
-                    </ul>
 
                     </div>
                     </div>

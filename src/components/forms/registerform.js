@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
-// import superagent from 'superagent';
+import {Redirect} from 'react-router-dom';
+import superagent from 'superagent';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import { BASE_URL, REGISTER_URL } from '../../utilities/constants';
 
 
 class RegisterForm extends Component{
@@ -9,27 +13,32 @@ class RegisterForm extends Component{
         this.state = {
             email: '',
             country_town: '',
-            password: ''
+            password: '',
+            fireRedirect: false
         }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
+
+
     onSubmit(e){
         e.preventDefault();
 
-        this.props.registerRequest(this.state);
-        // superagent
-        //     .post('http://127.0.0.1:5000/auth/register')
-        //     .send({ email: this.state.email, country_town: this.state.country_town, password: this.state.password })
-        //     .end((err, res) => {
-        //         if(err){
-        //             this.setState({ errorMessage : 'Authentication Failed'}); return;
-        //         }
-        //         console.log('res.body:', res.body)
-        //     });
+        superagent
+            .post(BASE_URL + REGISTER_URL)
+            .send({ email: this.state.email, country_town: this.state.country_town, password: this.state.password })
+            .end((err, res) => {
+                if(err){
+                    this.setState({ errorMessage : 'Authentication Failed'}); return;
+                }
+                // <Redirect to={{pathname: '/login'}} />;
+                // this.props.history.push('/login');
+                console.log('res.body:', res.body);
+                this.setState({fireRedirect: true})
 
+            });
     }
 
     onChange(e){
@@ -37,25 +46,30 @@ class RegisterForm extends Component{
     }
 
     render(){
-        return(
-            <form onSubmit={this.onSubmit}>
-                <label> Email </label>
-                <input value={this.state.email} type='text' onChange={this.onChange} name='email' />
-                <label> Country Town </label>
-                <input value={this.state.country_town} type='text' onChange={this.onChange} name='country_town' />
-                <label> Password </label>
-                <input value={this.state.password} type='password' onChange={this.onChange} name='password' />
+        const { fireRedirect } = this.state;
 
-                <button type='submit'>Submit</button>
-            </form>
+        return(
+            <div>
+
+            <form onSubmit={this.onSubmit}>
+            <div style={{display:'inline-block', marginBottom: '30px' }}>
+            <TextField value={this.state.email} onChange={this.onChange} name="email" floatingLabelText={'Email'}/>
+            <TextField value={this.state.country_town} onChange={this.onChange} name="country_town" floatingLabelText={'Country/Town'}/>
+            <TextField value={this.state.password} onChange={this.onChange} type="password" name="password" floatingLabelText={'Password'}/>
+            </div>
+            <div>
+            <RaisedButton type="submit" primary={true} label="Submit"/>
+            </div>
+            </form>  
+
+            { fireRedirect && (
+                <Redirect to={{pathname: '/login'}} />
+            )}
+
+            </div>
 
         );
     }
 }
-
-RegisterForm.propTypes = {
-    registerRequest: PropTypes.func.isRequired
-}
-
 
 export default RegisterForm;
