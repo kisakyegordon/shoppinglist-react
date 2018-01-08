@@ -33,9 +33,8 @@ class CreateList extends Component{
                     toast.error("List Already Exists");
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
                 }
-                toast.success("Added Successfully");
                 this.props.history.push('/shoppinglists');
-                
+                toast.success("Added Successfully");
             });
     }
 
@@ -44,7 +43,6 @@ class CreateList extends Component{
         let token = localStorage.getItem('token');
         let list_id_now = this.props.match.params.id;
         superagent
-
             .post(BASE_URL + 'shoppinglists/'+list_id_now+'/items/')
             .send({ name: this.state.name, list_id: list_id_now })
             .set('Content-Type', 'application/json')
@@ -56,9 +54,8 @@ class CreateList extends Component{
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
 
                 }
-
-                
                 this.props.history.push('/shoppinglist/'+list_id_now);
+                toast.success("Added Successfully");
             });
     }
 
@@ -79,38 +76,38 @@ class CreateList extends Component{
             return(
                 <div className="signin" style={{minHeight:'200px', marginTop: '75px'}}>
                     <ToastContainer 
-                    autoClose={2000}
-                    hideProgressBar={true}
+                        autoClose={2000}
+                        hideProgressBar={true}
                     />
 
                     {this.checkUrl()? 
                         <div>
                         <h3> Enter List Item Name </h3>
-                        <form onSubmit={this.onSubmitItem}>
-                        <div style={{display:'inline-block', marginBottom: '30px' }}>
-                        <TextField value={this.state.name} onChange={this.onChange} name="name" floatingLabelText={'Item Name'}/>
-                        </div>
-                        <div className="Gaga">
-                        <RaisedButton onClick={this.handleBack} label="Cancel" labelPosition="after" />
-                        <RaisedButton type="submit" primary={true} label="Save" labelPosition="after" icon={<ContentSave/>}/>
-                        </div>
-                        </form>  
+                            <form onSubmit={this.onSubmitItem}>
+                                <div style={{display:'inline-block', marginBottom: '30px' }}>
+                                <TextField value={this.state.name} onChange={this.onChange} name="name" floatingLabelText={'Item Name'}/>
+                                </div>
+
+                                <div className="Gaga">
+                                <RaisedButton onClick={this.handleBack} label="Cancel" labelPosition="after" />
+                                <RaisedButton type="submit" primary={true} label="Save" labelPosition="after" icon={<ContentSave/>}/>
+                                </div>
+                            </form>  
                         </div>  
                     :
                         <div>
-                        <h3> Enter List Name </h3>
-                        <form onSubmit={this.onSubmit}>
-                        <div style={{display:'inline-block', marginBottom: '30px' }}>
-                        <TextField value={this.state.name} onChange={this.onChange} name="name" floatingLabelText={'List Name'}/>
-                        </div>
-                        <div className="Gaga">
-                        <RaisedButton onClick={this.handleBack} label="Cancel" labelPosition="after" />
-                        <RaisedButton type="submit" primary={true} label="Save" labelPosition="after" icon={<ContentSave/>}/>
-                        </div>
-                        </form>  
+                            <h3> Enter List Name </h3>
+                            <form onSubmit={this.onSubmit}>
+                                <div style={{display:'inline-block', marginBottom: '30px' }}>
+                                <TextField value={this.state.name} onChange={this.onChange} name="name" floatingLabelText={'List Name'}/>
+                                </div>
+                                <div className="Gaga">
+                                <RaisedButton onClick={this.handleBack} label="Cancel" labelPosition="after" />
+                                <RaisedButton type="submit" primary={true} label="Save" labelPosition="after" icon={<ContentSave/>}/>
+                                </div>
+                            </form>  
                         </div>  
                     }
-
                 </div>
     
             );

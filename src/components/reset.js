@@ -10,6 +10,7 @@ import TextField from 'material-ui/TextField';
 import ContentSave from 'material-ui/svg-icons/content/save';
 import superagent from 'superagent';
 import { BASE_URL }  from '../utilities/constants';
+import { ToastContainer, toast } from 'react-toastify';
 
 /**
  * Horizontal steppers are ideal when the contents of one step depend on an earlier step.
@@ -37,18 +38,18 @@ class HorizontalLinearStepper extends Component {
     
 
     handleNext(){
-    const {stepIndex} = this.state;
-    this.setState({
-        stepIndex: stepIndex + 1,
-        finished: stepIndex >= 2,
-    });
+        const {stepIndex} = this.state;
+        this.setState({
+            stepIndex: stepIndex + 1,
+            finished: stepIndex >= 2,
+        });
     }
 
     handlePrev(){
-    const {stepIndex} = this.state;
-    if (stepIndex > 0) {
-        this.setState({stepIndex: stepIndex - 1});
-    }
+        const {stepIndex} = this.state;
+        if (stepIndex > 0) {
+            this.setState({stepIndex: stepIndex - 1});
+        }
     }
 
     onSubmit(e){
@@ -66,6 +67,7 @@ class HorizontalLinearStepper extends Component {
                 }
                 console.log('password successfully reset');
                 this.props.history.push('/login');
+                toast.success("Reset Successfully");
             });
     }
 
@@ -75,16 +77,16 @@ class HorizontalLinearStepper extends Component {
     }
 
     getStepContent(stepIndex) {
-    switch (stepIndex) {
-        case 0:
-        return (<TextField value={this.state.email} onChange={this.onChange} name="email" floatingLabelText={'Email'}/>);
-        case 1:
-        return (<TextField value={this.state.country_town} onChange={this.onChange} name="country_town" floatingLabelText={'Country / Town'}/>);
-        case 2:
-        return (<TextField value={this.state.password} onChange={this.onChange} name="password" floatingLabelText={'New Password'}/>);
-        default:
-        return 'You\'re a long way from home sonny jim!';
-    }
+        switch (stepIndex) {
+            case 0:
+            return (<TextField value={this.state.email} onChange={this.onChange} name="email" floatingLabelText={'Email'}/>);
+            case 1:
+            return (<TextField value={this.state.country_town} onChange={this.onChange} name="country_town" floatingLabelText={'Country / Town'}/>);
+            case 2:
+            return (<TextField value={this.state.password} onChange={this.onChange} name="password" floatingLabelText={'New Password'}/>);
+            default:
+            return 'You\'re a long way from home sonny jim!';
+        }
     }
 
     render() {
@@ -93,6 +95,10 @@ class HorizontalLinearStepper extends Component {
 
         return (
         <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
+                <ToastContainer 
+                    autoClose={2000}
+                    hideProgressBar={true}
+                />
             <Stepper activeStep={stepIndex}>
             <Step>
                 <StepLabel>Enter Your Email</StepLabel>
@@ -124,10 +130,10 @@ class HorizontalLinearStepper extends Component {
                 <p>{this.getStepContent(stepIndex)}</p>
                 <div  className="stepper" style={{marginTop: 12}}>
                     <FlatButton
-                    label="Back"
-                    disabled={stepIndex === 0}
-                    onClick={this.handlePrev}
-                    style={{marginRight: 12}}
+                        label="Back"
+                        disabled={stepIndex === 0}
+                        onClick={this.handlePrev}
+                        style={{marginRight: 12}}
                     />
                     <RaisedButton
                     label={stepIndex === 2 ? 'Finish' : 'Next'}
@@ -139,7 +145,6 @@ class HorizontalLinearStepper extends Component {
             )}
             </div>
             </div>
-
 
         </div>
         );

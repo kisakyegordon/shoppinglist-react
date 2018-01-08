@@ -5,6 +5,7 @@ import superagent from 'superagent';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { BASE_URL, REGISTER_URL } from '../../utilities/constants';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 class RegisterForm extends Component{
@@ -22,7 +23,6 @@ class RegisterForm extends Component{
     }
 
 
-
     onSubmit(e){
         e.preventDefault();
 
@@ -33,11 +33,9 @@ class RegisterForm extends Component{
                 if(err){
                     this.setState({ errorMessage : 'Authentication Failed'}); return;
                 }
-                // <Redirect to={{pathname: '/login'}} />;
-                // this.props.history.push('/login');
                 console.log('res.body:', res.body);
-                this.setState({fireRedirect: true})
-
+                this.setState({fireRedirect: true});
+                toast.success("Registered Successfully");
             });
     }
 
@@ -50,24 +48,28 @@ class RegisterForm extends Component{
 
         return(
             <div>
+                <ToastContainer 
+                    autoClose={5000}
+                    hideProgressBar={true}
+                />
 
-            <form onSubmit={this.onSubmit}>
-            <div style={{display:'inline-block', marginBottom: '30px' }}>
-            <TextField value={this.state.email} onChange={this.onChange} name="email" floatingLabelText={'Email'}/>
-            <TextField value={this.state.country_town} onChange={this.onChange} name="country_town" floatingLabelText={'Country/Town'}/>
-            <TextField value={this.state.password} onChange={this.onChange} type="password" name="password" floatingLabelText={'Password'}/>
+                <form onSubmit={this.onSubmit}>
+                    <div style={{display:'inline-block', marginBottom: '30px' }}>
+                    <TextField value={this.state.email} onChange={this.onChange} name="email" floatingLabelText={'Email'}/>
+                    <TextField value={this.state.country_town} onChange={this.onChange} name="country_town" floatingLabelText={'Country/Town'}/>
+                    <TextField value={this.state.password} onChange={this.onChange} type="password" name="password" floatingLabelText={'Password'}/>
+                    </div>
+
+                    <div>
+                    <RaisedButton type="submit" primary={true} label="Submit"/>
+                    </div>
+                </form>  
+
+                { fireRedirect && (
+                    <Redirect to={{pathname: '/login'}} />
+                )}
+
             </div>
-            <div>
-            <RaisedButton type="submit" primary={true} label="Submit"/>
-            </div>
-            </form>  
-
-            { fireRedirect && (
-                <Redirect to={{pathname: '/login'}} />
-            )}
-
-            </div>
-
         );
     }
 }

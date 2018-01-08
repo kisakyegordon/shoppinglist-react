@@ -32,15 +32,15 @@ class Header extends Component{
             <div>
                 <div>
                     <div className="top">
-                    <h2>My Shopping List</h2>
+                        <h2>My Shopping List</h2>
                     </div>
+
                     <nav className="navbar navbar-default navbar-fixed-top topnav" role="navigation">
                     <div className="container topnav">
-
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    {
-                        this.isAuthenticated() ? userLinks : guestLinks
-                    }
+                        {
+                            this.isAuthenticated() ? userLinks : guestLinks
+                        }
                     </div>
                     </div>
                     </nav>

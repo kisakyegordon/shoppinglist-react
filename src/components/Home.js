@@ -5,7 +5,7 @@ class Home extends Component{
     render(){
         return(
             <div className="signin" >
-            <h2> Welcome To My Shopping List  </h2>
+                <h2> Welcome To My Shopping List  </h2>
             </div>
         );
     }

@@ -16,6 +16,7 @@ import KeyBoardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-lef
 import {Card} from 'material-ui/Card';
 import { BASE_URL }  from '../utilities/constants';
 import Divider from 'material-ui/Divider';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function searchingFor(search){
@@ -34,7 +35,7 @@ class ShoppingListsPage extends Component{
             lists: [],
             next_url:'',
             prev_url:'',
-            current_page:1 || '',
+            current_page: 1 || '',
             total:4
         };
 
@@ -63,24 +64,22 @@ class ShoppingListsPage extends Component{
      retrieveLists() {
         let token = localStorage.getItem('token');
         superagent
-        .get(BASE_URL + 'shoppinglists/?limit=2&page='+this.state.current_page)
-        // .get(BASE_URL + 'shoppinglists/')
-        .set('Content-Type', 'application/json')
-        .set('Authorization', 'Bearer '+token)
-        .end((err, res) => {
-            if(err){
-                console.log('Error in API call:', err);
-                this.setState({ errorMessage : 'Failed To Retrieve Lists From Server'}); 
-                return;
-            }
+            .get(BASE_URL + 'shoppinglists/?limit=2&page='+this.state.current_page)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
+            .end((err, res) => {
+                if(err){
+                    console.log('Error in API call:', err);
+                    this.setState({ errorMessage : 'Failed To Retrieve Lists From Server'}); 
+                    return;
+                }
 
-            this.setState({lists:res.body.lists});
-
-            this.setState({next_url:res.body.urls.next_url})
-            this.setState({prev_url:res.body.urls.prev_url})
-           
-            res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
-        });
+                this.setState({lists:res.body.lists});
+                this.setState({next_url:res.body.urls.next_url})
+                this.setState({prev_url:res.body.urls.prev_url})
+            
+                res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
+            });
     }
 
 
@@ -93,35 +92,37 @@ class ShoppingListsPage extends Component{
          console.log('Delete List with ID:'+id );
          let token = localStorage.getItem('token');
          superagent
-         .delete(BASE_URL + 'shoppinglists/' +id)
-         .set('Content-Type', 'application/json')
-         .set('Authorization', 'Bearer '+token)
-         .end((err, res) => {
-             if(err){
-                 console.log('Error While Deleting List :', err);
-                 this.setState({ errorMessage : 'Failed To Delete List From Server'}); 
-                 return;
-             }
-             this.retrieveLists();
-             this.setState({open:false})
-         });
+            .delete(BASE_URL + 'shoppinglists/' +id)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
+            .end((err, res) => {
+                if(err){
+                    console.log('Error While Deleting List :', err);
+                    this.setState({ errorMessage : 'Failed To Delete List From Server'}); 
+                    return;
+                }
+                
+                this.retrieveLists();
+                this.setState({open:false})
+                toast.success("Deleted Successfully");
+            });
      }
 
      onSubmit() {
 
         let token = localStorage.getItem('token');
         superagent
-        .get(BASE_URL + 'shoppinglists/?q=' +this.state.search)
-        .set('Content-Type', 'application/json')
-        .set('Authorization', 'Bearer '+token)
-        .end((err, res) => {
-            if(err){
-                console.log('Error While Deleting List :', err);
-                this.setState({ errorMessage : 'Failed To Delete List From Server'}); 
-                return;
-            }
-            this.setState({lists:res.body[1]});
-        });
+            .get(BASE_URL + 'shoppinglists/?q=' +this.state.search)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
+            .end((err, res) => {
+                if(err){
+                    console.log('Error While Deleting List :', err);
+                    this.setState({ errorMessage : 'Failed To Delete List From Server'}); 
+                    return;
+                }
+                this.setState({lists:res.body[1]});
+            });
     }
 
     handleBack = () => {
@@ -189,77 +190,76 @@ class ShoppingListsPage extends Component{
 
         return (
             <div>
-            <div className="Gonga" style={divStyles}>
-            <div style={{display:'flex', justifyContent:'end', flexDirection: 'column'}}>
-            <IconButton style={{border:'1px solid #000',borderRadius: '50%'}} onClick={this.handleBack} > <ArrowBack /> </IconButton>
-            </div>
-            <TextField floatingLabelText="Search" value={this.state.search} onChange={this.onChange} name="search" />
-            </div>
+                <ToastContainer 
+                    autoClose={5000}
+                    hideProgressBar={true}
+                />
 
-            <div className="signin2">
-            <div className="top-title">
+                <Dialog 
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}>
+                    Are you sure you want to delete this list
+                </Dialog>
 
-            <div> </div>
+                <div className="Gonga" style={divStyles}>
+                <div style={{display:'flex', justifyContent:'end', flexDirection: 'column'}}>
+                <IconButton style={{border:'1px solid #000',borderRadius: '50%'}} onClick={this.handleBack} > <ArrowBack /> </IconButton>
+                </div>
+                <TextField floatingLabelText="Search" value={this.state.search} onChange={this.onChange} name="search" />
+                </div>
 
-            <div className="title">
-            <h1> Shopping Lists</h1>
-            </div>
+                <div className="signin2">
+                    <div className="top-title">
 
-            <div className="button">
-            <div> <p>Add List</p> </div>
-            <FloatingActionButton mini={true} onClick={this.handleCreate.bind(this)}> <ContentAdd /> </FloatingActionButton>
-            </div>
+                        <div> </div>
+                        <div className="title">
+                        <h1> Shopping Lists</h1>
+                        </div>
+                        <div className="button">
+                        <div> <p>Add List</p> </div>
+                        <FloatingActionButton mini={true} onClick={this.handleCreate.bind(this)}> <ContentAdd /> </FloatingActionButton>
+                        </div>
 
-            </div>
+                    </div>
 
-            <Dialog 
-            actions={actions}
-            modal={false}
-            open={this.state.open}
-            onRequestClose={this.handleClose}>
-            Are you sure you want to delete this list
-            </Dialog>
 
-            <Card>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderColumn>No</TableHeaderColumn>
-                        <TableHeaderColumn>List Name</TableHeaderColumn>
-                        <TableHeaderColumn>Modify</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
 
-                {/* Condition to return a no lists message if state is empty & list array when there are lists  */}
-                <TableBody>
-                    { this.state.lists.length < 1?
-                    <TableRow>
-                    <TableHeaderColumn> </TableHeaderColumn>
-                    <TableHeaderColumn> No Lists, Add a new list </TableHeaderColumn>
-                    <TableHeaderColumn> </TableHeaderColumn>
-                    </TableRow>
-                    :
-                    ListEntry }
-                </TableBody>
-            </Table>
-            <Divider />
+                <Card>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderColumn>No</TableHeaderColumn>
+                                <TableHeaderColumn>List Name</TableHeaderColumn>
+                                <TableHeaderColumn>Modify</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
 
-            </Card>
+                        {/* Condition to return a no lists message if state is empty & list array when there are lists  */}
+                        <TableBody>
+                            { this.state.lists.length < 1?
+                                <TableRow>
+                                    <TableHeaderColumn> </TableHeaderColumn>
+                                    <TableHeaderColumn> No Lists, Add a new list </TableHeaderColumn>
+                                    <TableHeaderColumn> </TableHeaderColumn>
+                                </TableRow>
+                            :
+                            ListEntry }
+                        </TableBody>
+                    </Table>
+                <Divider />
+                </Card>
 
-            <div className="pagi">
+                <div className="pagi">
+                    {this.state.current_page < 2? '': <IconButton  onClick={this.paginate_back}> <KeyBoardArrowLeft /> </IconButton>}
+                    <div className="cuRI">
+                        {this.state.current_page} of {total_lists}
+                    </div>
+                    {this.state.current_page > total_lists? '': <IconButton  onClick={this.paginate_next}> <KeyBoardArrowRight /> </IconButton>}
+                </div>
 
-            {this.state.current_page < 2? '': <IconButton  onClick={this.paginate_back}> <KeyBoardArrowLeft /> </IconButton>}
-            
-            <div className="cuRI">
-            {this.state.current_page} of {total_lists}
-            </div>
-            
-            {this.state.current_page > total_lists? '': <IconButton  onClick={this.paginate_next}> <KeyBoardArrowRight /> </IconButton>}
-            
-
-            </div>
-
-            </div>
+                </div>
             </div>
         );
     }

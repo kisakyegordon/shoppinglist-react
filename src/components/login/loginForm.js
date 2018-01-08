@@ -7,8 +7,6 @@ import toastr from 'toastr';
 import { ToastContainer, toast } from 'react-toastify';
 import { BASE_URL, LOGIN_URL } from '../../utilities/constants';
 import { setTimeout } from 'timers';
-// import { browserHistory } from 'react-router';
-
 
 
 class LoginForm extends Component{
@@ -22,10 +20,8 @@ class LoginForm extends Component{
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-
     }
 
-    
 
     onSubmit(e){
         e.preventDefault();
@@ -36,14 +32,9 @@ class LoginForm extends Component{
                 if(err){
                     this.setState({ errorMessage : 'Authentication Failed'}); return;
                 }
-                // this.props.history.push('/shoppinglists');
                 localStorage.setItem('token', res.body.access_token );
                 toast.success("Loggedin Successfully");
                 this.setState({ isAuthenticated:true});
-
-
-                // setTimeout(window.location.reload(), 2000);
-
             });
     }
 
@@ -53,43 +44,37 @@ class LoginForm extends Component{
 
     isAuthenticated(){
         const token = localStorage.getItem('token');
-        // this.setState({ isAuthenticated: true });
         return token && token.length > 10;
     }
-
-    
 
     render(){
         const isAlreadyAuthenticated = this.isAuthenticated();
         const divStyles = {width: '100px', margin: '30px auto', display:'flex'};
         if (this.state.isAuthenticated){
             setTimeout(<Redirect to={{pathname: '/shoppinglists'}} />, 10000);
-            // return <Redirect to={{pathname: '/shoppinglists'}} />;
         }
 
-
-    //     if (this.state.isAuthenticated)
-    // return setTimeout(<Redirect to={{pathname: '/shoppinglists'}} />, 1000);
         return(
             <div>
-                { isAlreadyAuthenticated ?
-                 <Redirect to={{pathname: '/shoppinglists'}}/>:  
-                <form onSubmit={this.onSubmit}>
-                    <TextField floatingLabelText={'Email'} value={this.state.email} onChange={this.onChange} name='email'/>
-                    <TextField floatingLabelText={'Password'} value={this.state.password} type='password' onChange={this.onChange} name='password' />
-                    <div className="GtglAe">
-                        <div className="text"> <a href="/reset">Reset Password ?</a></div>
-                        <div> 
-                            <RaisedButton  style={divStyles} primary={true} label="Submit" type="submit"  />
-                        </div>
-                    </div>
-                </form> 
-                }
-
                 <ToastContainer 
                     autoClose={5000}
                     hideProgressBar={true}
                 />
+
+                { isAlreadyAuthenticated ?
+                    <Redirect to={{pathname: '/shoppinglists'}}/>
+                    :  
+                    <form onSubmit={this.onSubmit}>
+                        <TextField floatingLabelText={'Email'} value={this.state.email} onChange={this.onChange} name='email'/>
+                        <TextField floatingLabelText={'Password'} value={this.state.password} type='password' onChange={this.onChange} name='password' />
+                        <div className="GtglAe">
+                            <div className="text"> <a href="/reset">Reset Password ?</a></div>
+                            <div> 
+                                <RaisedButton  style={divStyles} primary={true} label="Submit" type="submit"  />
+                            </div>
+                        </div>
+                    </form> 
+                }
             </div>
         );
     }
