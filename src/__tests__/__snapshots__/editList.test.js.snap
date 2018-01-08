@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EditList /> match a snapshot 1`] = `
+<div
+  className="signin"
+  style={
+    Object {
+      "marginTop": "75px",
+      "minHeight": "200px",
+    }
+  }
+>
+  <h3>
+     Edit List Name 
+  </h3>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "marginBottom": "30px",
+        }
+      }
+    >
+      <TextField
+        disabled={false}
+        floatingLabelFixed={false}
+        fullWidth={false}
+        multiLine={false}
+        name="name"
+        onChange={[Function]}
+        placeHolder=""
+        rows={1}
+        type="text"
+        underlineShow={true}
+        value=""
+      />
+    </div>
+    <div
+      className="Gaga"
+    >
+      <RaisedButton
+        disabled={false}
+        fullWidth={false}
+        label="Cancel"
+        labelPosition="after"
+        onClick={[Function]}
+        primary={false}
+        secondary={false}
+      />
+      <RaisedButton
+        disabled={false}
+        fullWidth={false}
+        icon={<ContentSave />}
+        label="Save"
+        labelPosition="after"
+        primary={true}
+        secondary={false}
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from './components/common/Header';
-import Footer from './components/common/footer';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
+import Header from './components/header/header';
+import Home from './components/home';
+import Login from './components/login/login';
+import Register from './components/register/register';
 import ShoppingList from './components/shoppingList';
 import ShoppingListsPage from './components/shoppingListsPage';
 import Logout from './components/logout';
 import CreateList from './components/createList';
-import EditList from './components/editList';
-import EditListItem from './components/editListItem';
-import HorizontalLinearStepper from './components/reset2';
+import EditList from './components/edit/editList';
+import EditListItem from './components/edit/editListItem';
+import HorizontalLinearStepper from './components/reset';
+import PrivateRoute from './utilities/privateRoute';
 
 
 class App extends Component {
@@ -23,22 +23,21 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/shoppinglists" component={ShoppingListsPage} />
-          <Route exact path="/shoppinglist/:id" component={ShoppingList} />
-          <Route path="/shoppinglist/:id/items/:item_id" component={EditListItem} />
+          {/* <Route path="/shoppinglists" component={ShoppingListsPage} /> */}
+          <PrivateRoute path="/shoppinglists" component={ShoppingListsPage} />
+          <PrivateRoute exact path="/shoppinglist/:id" component={ShoppingList} />
+          <PrivateRoute path="/shoppinglist/:id/items/:item_id" component={EditListItem} />
           <Route path="/logout" component={Logout} />
-          <Route exact path="/newlist" component={CreateList} />
-          <Route exact path="/newlist/:id" component={CreateList} />
+          <PrivateRoute exact path="/newlist" component={CreateList} />
+          <PrivateRoute exact path="/newlist/:id" component={CreateList} />
           <Route exact path="/reset" component={HorizontalLinearStepper} />
 
-          <Route exact path="/editlist/:id" component={EditList} />
+          <PrivateRoute exact path="/editlist/:id" component={EditList} />
 
           <Route render= {function(){
             return <h4> 404 Page Not Found </h4>
           }} />
         </Switch>
-        <Footer />
-
       </div>
     );
   }

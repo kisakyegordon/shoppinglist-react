@@ -11,10 +11,11 @@ import Dialog from 'material-ui/Dialog';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentCreate from 'material-ui/svg-icons/content/create';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import KeyBoardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
+import KeyBoardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import {Card} from 'material-ui/Card';
 import { BASE_URL }  from '../utilities/constants';
 import Divider from 'material-ui/Divider';
-import Pagination from 'material-ui-pagination';
 
 
 function searchingFor(search){
@@ -33,7 +34,8 @@ class ShoppingListsPage extends Component{
             lists: [],
             next_url:'',
             prev_url:'',
-            current_page:1
+            current_page:1 || '',
+            total:4
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -81,10 +83,6 @@ class ShoppingListsPage extends Component{
         });
     }
 
-
-    updateRows(state){
-        this.retrieveLists();
-    }
 
     handleEdit(id) {
         this.props.history.push('/editlist/'+id);
@@ -161,6 +159,8 @@ class ShoppingListsPage extends Component{
     }
 
     render(){
+
+        const total_lists = this.state.lists.length;
         // Search component styling
         const divStyles = {width: '75%', margin: 'auto', display: 'flex', justifyContent: 'space-between'};
 
@@ -185,7 +185,7 @@ class ShoppingListsPage extends Component{
         const actions = [
             <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
             <FlatButton label="Delete" primary={true} keyboardFocused={true} onClick={this.handleDelete} />
-        ];
+        ]; 
 
         return (
             <div>
@@ -248,8 +248,14 @@ class ShoppingListsPage extends Component{
 
             <div className="pagi">
 
-            <button onClick={this.paginate_back}> Back </button>
-            <button onClick={this.paginate_next}> Next </button>
+            {this.state.current_page < 2? '': <IconButton  onClick={this.paginate_back}> <KeyBoardArrowLeft /> </IconButton>}
+            
+            <div className="cuRI">
+            {this.state.current_page} of {total_lists}
+            </div>
+            
+            {this.state.current_page > total_lists? '': <IconButton  onClick={this.paginate_next}> <KeyBoardArrowRight /> </IconButton>}
+            
 
             </div>
 

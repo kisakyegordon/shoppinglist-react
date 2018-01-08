@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Register /> match a snapshot 1`] = `
+<div>
+  <div
+    className="signin"
+  >
+    <h1>
+       Register 
+    </h1>
+    <RegisterForm />
+  </div>
+</div>
+`;

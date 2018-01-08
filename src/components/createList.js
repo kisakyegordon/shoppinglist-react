@@ -33,8 +33,9 @@ class CreateList extends Component{
                     toast.error("List Already Exists");
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
                 }
-                
+                toast.success("Added Successfully");
                 this.props.history.push('/shoppinglists');
+                
             });
     }
 
@@ -50,7 +51,10 @@ class CreateList extends Component{
             .set('Authorization', 'Bearer '+token)
             .end((err, res) => {
                 if(err){
+                    console.log(err.status)
+                    toast.error("Item Already Exists");
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
+
                 }
 
                 
@@ -86,7 +90,8 @@ class CreateList extends Component{
                         <div style={{display:'inline-block', marginBottom: '30px' }}>
                         <TextField value={this.state.name} onChange={this.onChange} name="name" floatingLabelText={'Item Name'}/>
                         </div>
-                        <div>
+                        <div className="Gaga">
+                        <RaisedButton onClick={this.handleBack} label="Cancel" labelPosition="after" />
                         <RaisedButton type="submit" primary={true} label="Save" labelPosition="after" icon={<ContentSave/>}/>
                         </div>
                         </form>  

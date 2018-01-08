@@ -389,3 +389,30 @@ table tbody tr a:hover{
     padding: 0;
     margin: 0;
 }
+
+/*------------------------------
+       PAGINATION
+------------------------------*/
+.pagi{
+    display: flex;
+justify-content: center;
+padding: 10px 0px;
+}
+
+.pagi-button:hover{
+    background: rgba(233,30,99,.12);
+}
+
+.cuRI{
+    font-family: "Roboto", sans-serif;
+    line-height: 24px;
+    min-width: 50px;
+    padding: 12px 5px;
+    background: #E91E63;
+    color: #fff;
+    border-radius: 50%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

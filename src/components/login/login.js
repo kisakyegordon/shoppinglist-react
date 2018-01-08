@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/forms/loginform';
+import LoginForm from './loginForm';
 import Paper from 'material-ui/Paper';
 
 class Login extends Component{

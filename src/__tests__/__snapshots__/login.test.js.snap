@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> match a snapshot 1`] = `
+<div>
+  <div
+    className="signin"
+  >
+    <h1>
+       Log in 
+    </h1>
+    <LoginForm />
+  </div>
+</div>
+`;

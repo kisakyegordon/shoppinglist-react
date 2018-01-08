@@ -11,14 +11,16 @@ import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import Return from '../utilities/constants';
 import { BASE_URL }  from '../utilities/constants';
+import Dialog from 'material-ui/Dialog';
 
 
 class ShoppingList extends Component {
     constructor(){
         super();
         this.state ={
+            open:false,
             name:'',
-            item_id:'try item 1',
+            item_id:'',
             item_name:'try item 2',
             search:'',
             items:[]
@@ -44,6 +46,15 @@ class ShoppingList extends Component {
         this.handleListItems();
     }
 
+    handleOpen = (id) => {
+        this.setState({open:true});
+        this.setState({item_id:id})
+    }
+
+    handleClose = () => {
+        this.setState({open:false});
+    }
+
     handleNavigation(){
         this.props.history.goBack();
     }
@@ -60,15 +71,15 @@ class ShoppingList extends Component {
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
                 }
                 const item_name = res.body.items;
-                // console.log(res.body);
                 this.setState({items:item_name});
                 res.body.items?  this.setState({items:item_name}) : console.log('No List Items To Retrieve');
             });
     }
 
-    handleDelete(id) {
+    handleDelete = () => {
         let token = localStorage.getItem('token');
         let list_id = this.props.match.params.id;
+        let id = this.state.item_id
         superagent
         .delete(BASE_URL + 'shoppinglists/'+list_id+'/items/'+id)
         .set('Content-Type', 'application/json')
@@ -88,6 +99,7 @@ class ShoppingList extends Component {
     }
 
     handleEdit = (id) => {
+        this.setState({item_id:id})
         let list_id_now = this.props.match.params.id;
         this.props.history.push('/shoppinglist/'+list_id_now+'/items/'+id);
         console.log(id)
@@ -116,15 +128,19 @@ class ShoppingList extends Component {
                         <TableHeaderColumn> {index + 1} </TableHeaderColumn>
                         <TableHeaderColumn> <a> {item.Name} </a> </TableHeaderColumn>
                         <TableHeaderColumn> 
-                            <FlatButton onClick={this.handleEdit.bind(this, item.id)} primary={true} label="Edit" labelPosition="after" icon={<ContentCreate/>}/>  
-                            <FlatButton onClick={this.handleDelete.bind(this, item.Id)} secondary={true} label="Delete" labelPosition="after" icon={<ActionDelete/>}/>
+                            <FlatButton onClick={this.handleEdit.bind(this, item.Id)} primary={true} label="Edit" labelPosition="after" icon={<ContentCreate/>}/>  
+                            {/* <FlatButton onClick={this.handleDelete.bind(this, item.Id)} secondary={true} label="Delete" labelPosition="after" icon={<ActionDelete/>}/> */}
+                            <FlatButton onClick={this.handleOpen.bind(this, item.Id)} secondary={true} label="Delete" labelPosition="after" icon={<ActionDelete/>}/>
                         </TableHeaderColumn>
                     </TableRow>
                 );
             });
 
+        const actions = [
+            <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
+            <FlatButton label="Delete" primary={true} keyboardFocused={true} onClick={this.handleDelete} />
+        ]; 
 
-        
 
         return (
 
@@ -154,6 +170,14 @@ class ShoppingList extends Component {
                 </div>
 
                 </div>
+
+                <Dialog 
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}>
+                    Are you sure you want to delete this list
+                </Dialog>
 
                     <Table>
                         <TableHeader>

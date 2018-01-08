@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ShoppingList /> match a snapshot 1`] = `
+<div>
+  <div
+    className="Gonga"
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "margin": "auto",
+        "paddingTop": "15px",
+        "width": "75%",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "end",
+        }
+      }
+    >
+      <IconButton
+        disableTouchRipple={false}
+        disabled={false}
+        iconStyle={Object {}}
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "1px solid #000",
+            "borderRadius": "50%",
+          }
+        }
+        tooltipPosition="bottom-center"
+        touch={false}
+      >
+         
+        <NavigationArrowBack />
+         
+      </IconButton>
+    </div>
+  </div>
+  <div
+    className="signin2"
+  >
+    <div
+      className="top-title"
+    >
+      <div>
+         
+      </div>
+      <div
+        className="title"
+      >
+        <h1>
+           
+           - Items 
+        </h1>
+      </div>
+      <div
+        className="button"
+      >
+        <p>
+           Add Item 
+        </p>
+        <FloatingActionButton
+          disabled={false}
+          mini={true}
+          onClick={[Function]}
+          secondary={false}
+          zDepth={2}
+        >
+           
+          <ContentAdd />
+           
+        </FloatingActionButton>
+      </div>
+    </div>
+    <Dialog
+      actions={
+        Array [
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            label="Cancel"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={true}
+            secondary={false}
+          />,
+          <FlatButton
+            disabled={false}
+            fullWidth={false}
+            keyboardFocused={true}
+            label="Delete"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={true}
+            secondary={false}
+          />,
+        ]
+      }
+      autoDetectWindowHeight={true}
+      autoScrollBodyContent={false}
+      modal={false}
+      onRequestClose={[Function]}
+      open={false}
+      repositionOnUpdate={true}
+    >
+      Are you sure you want to delete this list
+    </Dialog>
+    <Table
+      allRowsSelected={false}
+      fixedFooter={true}
+      fixedHeader={true}
+      height="inherit"
+      multiSelectable={false}
+      selectable={true}
+    >
+      <TableHeader
+        adjustForCheckbox={true}
+        displaySelectAll={true}
+        enableSelectAll={true}
+        selectAllSelected={false}
+      >
+        <TableRow
+          displayBorder={true}
+          hoverable={false}
+          hovered={false}
+          selectable={true}
+          striped={false}
+        >
+          <TableHeaderColumn>
+             No 
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+             Name 
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+             Modify 
+          </TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody
+        allRowsSelected={false}
+        deselectOnClickaway={true}
+        displayRowCheckbox={true}
+        multiSelectable={false}
+        preScanRows={true}
+        selectable={true}
+        style={Object {}}
+      >
+        <TableRow
+          displayBorder={true}
+          hoverable={false}
+          hovered={false}
+          selectable={true}
+          striped={false}
+        >
+          <TableHeaderColumn>
+             
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+             No Items, Add a list item 
+          </TableHeaderColumn>
+          <TableHeaderColumn>
+             
+          </TableHeaderColumn>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </div>
+</div>
+`;

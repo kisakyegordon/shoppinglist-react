@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> match a snapshot 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Email"
+      fullWidth={false}
+      multiLine={false}
+      name="email"
+      onChange={[Function]}
+      rows={1}
+      type="text"
+      underlineShow={true}
+      value=""
+    />
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Password"
+      fullWidth={false}
+      multiLine={false}
+      name="password"
+      onChange={[Function]}
+      rows={1}
+      type="password"
+      underlineShow={true}
+      value=""
+    />
+    <div
+      className="GtglAe"
+    >
+      <div
+        className="text"
+      >
+         
+        <a
+          href="/reset"
+        >
+          Reset Password ?
+        </a>
+      </div>
+      <div>
+        <RaisedButton
+          disabled={false}
+          fullWidth={false}
+          label="Submit"
+          labelPosition="after"
+          primary={true}
+          secondary={false}
+          style={
+            Object {
+              "display": "flex",
+              "margin": "30px auto",
+              "width": "100px",
+            }
+          }
+          type="submit"
+        />
+      </div>
+    </div>
+  </form>
+  <ToastContainer
+    autoClose={5000}
+    bodyClassName=""
+    className={null}
+    closeButton={<DefaultCloseButton />}
+    closeOnClick={true}
+    hideProgressBar={true}
+    newestOnTop={false}
+    pauseOnHover={true}
+    position="top-right"
+    progressClassName=""
+    style={null}
+    toastClassName=""
+    transition={[Function]}
+  />
+</div>
+`;
