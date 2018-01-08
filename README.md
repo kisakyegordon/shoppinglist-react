@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.org/kisakyegordon/shoppinglist-react.svg?branch=crud)](https://travis-ci.org/kisakyegordon/shoppinglist-react)
 
 ShoppingList React App
 ========

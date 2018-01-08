@@ -28,6 +28,7 @@ class LoginForm extends Component{
         superagent
             .post( BASE_URL + LOGIN_URL)
             .send({ email: this.state.email, password: this.state.password })
+            .set('Access-Control-Allow-Origin', '*')
             .end((err, res) => {
                 if(err){
                     this.setState({ errorMessage : 'Authentication Failed'}); return;
