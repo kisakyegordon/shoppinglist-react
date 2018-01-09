@@ -39,5 +39,5 @@ npm test -- --coverage
 ## Heroku Deploy
 - App can be accessed on Heroku at this link
 ```
-npm test -- --coverage
+https://shoppinglist66-react.herokuapp.com/
 ```
