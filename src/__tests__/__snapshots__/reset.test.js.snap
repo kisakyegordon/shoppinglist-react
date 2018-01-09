@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Reset /> match a snapshot 1`] = `
+<div
+  style={
+    Object {
+      "margin": "auto",
+      "maxWidth": 700,
+      "width": "100%",
+    }
+  }
+>
+  <ToastContainer
+    autoClose={2000}
+    bodyClassName=""
+    className={null}
+    closeButton={<DefaultCloseButton />}
+    closeOnClick={true}
+    hideProgressBar={true}
+    newestOnTop={false}
+    pauseOnHover={true}
+    position="top-right"
+    progressClassName=""
+    style={null}
+    toastClassName=""
+    transition={[Function]}
+  />
+  <Stepper
+    activeStep={0}
+    connector={<pure(StepConnector) />}
+    linear={true}
+    orientation="horizontal"
+  >
+    <Step>
+      <StepLabel>
+        Enter Your Email
+      </StepLabel>
+    </Step>
+    <Step>
+      <StepLabel>
+        Answer Your Secret Question
+      </StepLabel>
+    </Step>
+    <Step>
+      <StepLabel>
+        Enter Your New Password
+      </StepLabel>
+    </Step>
+  </Stepper>
+  <div
+    className="signin"
+  >
+    <div
+      style={
+        Object {
+          "margin": "0 16px",
+        }
+      }
+    >
+      <div>
+        <p>
+          <TextField
+            disabled={false}
+            floatingLabelFixed={false}
+            floatingLabelText="Email"
+            fullWidth={false}
+            multiLine={false}
+            name="email"
+            onChange={[Function]}
+            rows={1}
+            type="text"
+            underlineShow={true}
+            value=""
+          />
+        </p>
+        <div
+          className="stepper"
+          style={
+            Object {
+              "marginTop": 12,
+            }
+          }
+        >
+          <FlatButton
+            disabled={true}
+            fullWidth={false}
+            label="Back"
+            labelPosition="after"
+            labelStyle={Object {}}
+            onClick={[Function]}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
+            primary={false}
+            secondary={false}
+            style={
+              Object {
+                "marginRight": 12,
+              }
+            }
+          />
+          <RaisedButton
+            disabled={false}
+            fullWidth={false}
+            label="Next"
+            labelPosition="after"
+            onClick={[Function]}
+            primary={true}
+            secondary={false}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
