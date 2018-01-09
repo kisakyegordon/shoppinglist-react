@@ -5,6 +5,7 @@
 ShoppingList React App
 ========
 <img src="https://screenshots.firefox.com/gdhEG2bOfy0AUvKy/shoppinglist66-react.herokuapp.com" />
+![alt text](https://screenshots.firefox.com/gdhEG2bOfy0AUvKy/shoppinglist66-react.herokuapp.com)
 
 ## About
 This is a React Application, created using Facebook's create-react-app.
