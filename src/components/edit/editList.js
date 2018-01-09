@@ -17,6 +17,9 @@ class EditList extends Component{
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * At Initial Loading of the Component - make a query to the API to pick the list name
+     */
     componentDidMount(){
         let list_id = this.props.match.params.id;
         let token = localStorage.getItem('token');
@@ -36,6 +39,11 @@ class EditList extends Component{
         this.props.history.goBack();
     }
 
+    /**
+     * Function to handle making an API call to update a list.
+     * It picks the list id from the url, that is evntually added to the end of the route
+     * @param {*} e 
+     */
     onSubmit(e){
         e.preventDefault();
         let token = localStorage.getItem('token');

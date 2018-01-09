@@ -43,20 +43,33 @@ class ShoppingListsPage extends Component{
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * On mounting the component retrieve all the lists and set them in the lists status
+     * Also pick all the lists and set them in total to get total of lists
+     */
     componentDidMount(){
         this.retrieveLists_total();
         this.retrieveLists();
      }
 
+     /**
+      * Handles Dialog box actions when oplen
+      */
      handleOpen = (id) => {
          this.setState({open:true});
          this.setState({listId:id})
      }
 
+     /**
+      * Handles Dialog close by setting open state to false
+      */
      handleClose = () => {
          this.setState({open:false});
      }
 
+     /**
+      * Make an Aunthentication check - check on availability of token in the local storage
+      */
      isAuthenticated() {
         const token = localStorage.getItem('token');
         return token && token.length > 10;
@@ -127,6 +140,9 @@ class ShoppingListsPage extends Component{
             });
      }
 
+     /**
+      * Handles Search functionality by passing searched key word in the route
+      */
      onSubmit() {
 
         let token = localStorage.getItem('token');
@@ -160,6 +176,9 @@ class ShoppingListsPage extends Component{
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    /**
+     * On Pagination handles the next button logic
+     */
     paginate_next = () =>{
         const page_number = (this.state.next_url.substring(36)) * 1;
         this.setState({current_page:page_number})
@@ -184,6 +203,9 @@ class ShoppingListsPage extends Component{
             });
     }
 
+    /**
+     * On Pagination handles the back button logic
+     */
     paginate_back = () =>{
         const page_number = (this.state.prev_url.substring(36)) * 1;
         this.setState({current_page:page_number})

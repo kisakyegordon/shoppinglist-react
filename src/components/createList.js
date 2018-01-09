@@ -6,6 +6,11 @@ import ContentSave from 'material-ui/svg-icons/content/save';
 import { ToastContainer, toast } from 'react-toastify';
 import { BASE_URL } from '../utilities/constants';
 
+/**
+ * This create List functionality handles creating both a List and a List Item under a condition
+ * regarding a change in the URL
+ */
+
 
 class CreateList extends Component{
     constructor(){
@@ -18,6 +23,10 @@ class CreateList extends Component{
         this.onSubmitItem = this.onSubmitItem.bind(this);
     }
 
+    /**
+     * Handles create list
+     * @param {*} e 
+     */
     onSubmit(e){
         e.preventDefault();
         let token = localStorage.getItem('token');
@@ -38,6 +47,10 @@ class CreateList extends Component{
             });
     }
 
+    /**
+     * Handles create list Item
+     * @param {*} e 
+     */
     onSubmitItem(e){
         e.preventDefault();
         let token = localStorage.getItem('token');
@@ -80,6 +93,7 @@ class CreateList extends Component{
                         hideProgressBar={true}
                     />
 
+                    
                     {this.checkUrl()? 
                         <div>
                         <h3> Enter List Item Name </h3>
