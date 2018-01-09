@@ -2,10 +2,11 @@
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
+[![Coverage Status](https://coveralls.io/repos/github/kisakyegordon/shoppinglist-react/badge.svg)](https://coveralls.io/github/kisakyegordon/shoppinglist-react)
+
 ShoppingList React App
 ========
-<img src="https://screenshots.firefox.com/gdhEG2bOfy0AUvKy/shoppinglist66-react.herokuapp.com" />
-![alt text](https://screenshots.firefox.com/gdhEG2bOfy0AUvKy/shoppinglist66-react.herokuapp.com)
+
 
 ## About
 This is a React Application, created using Facebook's create-react-app.
