@@ -1,7 +1,5 @@
 [![Build Status](https://travis-ci.org/kisakyegordon/shoppinglist-react.svg?branch=crud)](https://travis-ci.org/kisakyegordon/shoppinglist-react)
-
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-
 [![Coverage Status](https://coveralls.io/repos/github/kisakyegordon/shoppinglist-react/badge.svg?branch=crud)](https://coveralls.io/github/kisakyegordon/shoppinglist-react?branch=crud)
 
 ShoppingList React App
