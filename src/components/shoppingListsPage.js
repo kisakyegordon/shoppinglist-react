@@ -36,7 +36,7 @@ class ShoppingListsPage extends Component{
             next_url:'',
             prev_url:'',
             current_page: 1 || '',
-            total:4
+            total:[]
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -44,6 +44,7 @@ class ShoppingListsPage extends Component{
     }
 
     componentDidMount(){
+        this.retrieveLists_total();
         this.retrieveLists();
      }
 
@@ -64,7 +65,7 @@ class ShoppingListsPage extends Component{
      retrieveLists() {
         let token = localStorage.getItem('token');
         superagent
-            .get(BASE_URL + 'shoppinglists/?limit=2&page='+this.state.current_page)
+            .get(BASE_URL + 'shoppinglists/?limit=5&page='+this.state.current_page)
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer '+token)
             .end((err, res) => {
@@ -78,6 +79,24 @@ class ShoppingListsPage extends Component{
                 this.setState({next_url:res.body.urls.next_url})
                 this.setState({prev_url:res.body.urls.prev_url})
             
+                res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
+            });
+    }
+
+    retrieveLists_total() {
+        let token = localStorage.getItem('token');
+        superagent
+            .get(BASE_URL + 'shoppinglists/')
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
+            .end((err, res) => {
+                if(err){
+                    console.log('Error in API call:', err);
+                    this.setState({ errorMessage : 'Failed To Retrieve Lists From Server'}); 
+                    return;
+                }
+
+                this.setState({total:res.body.lists});            
                 res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
             });
     }
@@ -142,26 +161,56 @@ class ShoppingListsPage extends Component{
     }
 
     paginate_next = () =>{
-        const life = (this.state.next_url.substring(36)) * 1;
-        this.setState({current_page:life})
-        console.log(life)
-        // this.retrieveLists();
-        this.componentDidMount()
-        // window.location.reload()
+        const page_number = (this.state.next_url.substring(36)) * 1;
+        this.setState({current_page:page_number})
+        console.log("current page:", page_number)
+        let token = localStorage.getItem('token');
+        superagent
+            .get(BASE_URL + 'shoppinglists/?limit=5&page=' + page_number )
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
+            .end((err, res) => {
+                if(err){
+                    console.log('Error in API call:', err);
+                    this.setState({ errorMessage : 'Failed To Retrieve Lists From Server'}); 
+                    return;
+                }
+
+                this.setState({lists:res.body.lists});
+                this.setState({next_url:res.body.urls.next_url})
+                this.setState({prev_url:res.body.urls.prev_url})
+            
+                res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
+            });
     }
 
     paginate_back = () =>{
-        const life = (this.state.prev_url.substring(36)) * 1;
-        this.setState({current_page:life})
-        console.log(life)
-        // this.retrieveLists();
-        this.componentDidMount()
-        // window.location.reload()
+        const page_number = (this.state.prev_url.substring(36)) * 1;
+        this.setState({current_page:page_number})
+        console.log(page_number)
+        let token = localStorage.getItem('token');
+        superagent
+            .get(BASE_URL + 'shoppinglists/?limit=5&page=' + page_number )
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
+            .end((err, res) => {
+                if(err){
+                    console.log('Error in API call:', err);
+                    this.setState({ errorMessage : 'Failed To Retrieve Lists From Server'}); 
+                    return;
+                }
+
+                this.setState({lists:res.body.lists});
+                this.setState({next_url:res.body.urls.next_url})
+                this.setState({prev_url:res.body.urls.prev_url})
+            
+                res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
+            });
     }
 
     render(){
 
-        const total_lists = this.state.lists.length;
+        const total_lists = Math.ceil(this.state.total.length/5);
         // Search component styling
         const divStyles = {width: '75%', margin: 'auto', display: 'flex', justifyContent: 'space-between'};
 
@@ -175,7 +224,6 @@ class ShoppingListsPage extends Component{
 
                         <div>
                         <FlatButton onClick={this.handleEdit.bind(this, list.id)} primary={true} label="Edit" labelPosition="after" icon={<ContentCreate/>}/>
-                        {/* <FlatButton onClick={this.handleDelete.bind(this, list.id)} secondary={true} label="Delete" labelPosition="after" icon={<ActionDelete/>}/> */}
                         <FlatButton onClick={this.handleOpen.bind(this, list.id)} secondary={true} label="Delete" labelPosition="after" icon={<ActionDelete/>}/>
                         </div>
                     </TableHeaderColumn>
@@ -225,7 +273,6 @@ class ShoppingListsPage extends Component{
                     </div>
 
 
-
                 <Card>
                     <Table>
                         <TableHeader>
@@ -256,7 +303,7 @@ class ShoppingListsPage extends Component{
                     <div className="cuRI">
                         {this.state.current_page} of {total_lists}
                     </div>
-                    {this.state.current_page > total_lists? '': <IconButton  onClick={this.paginate_next}> <KeyBoardArrowRight /> </IconButton>}
+                    {this.state.current_page > total_lists - 1 ? '': <IconButton  onClick={this.paginate_next}> <KeyBoardArrowRight /> </IconButton>}
                 </div>
 
                 </div>

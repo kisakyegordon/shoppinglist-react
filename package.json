@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "coveralls": "^3.0.0",
     "enzyme-to-json": "^3.3.0",
+    "istanbul": "^0.4.5",
     "jest": "^22.0.4",
     "jest-cli": "^22.0.4",
     "material-ui": "^0.20.0",

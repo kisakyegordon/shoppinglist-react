@@ -2,6 +2,64 @@
 
 exports[`<ShoppingList /> match a snapshot 1`] = `
 <div>
+  <ToastContainer
+    autoClose={5000}
+    bodyClassName=""
+    className={null}
+    closeButton={<DefaultCloseButton />}
+    closeOnClick={true}
+    hideProgressBar={true}
+    newestOnTop={false}
+    pauseOnHover={true}
+    position="top-right"
+    progressClassName=""
+    style={null}
+    toastClassName=""
+    transition={[Function]}
+  />
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
+          disabled={false}
+          fullWidth={false}
+          label="Cancel"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={true}
+          secondary={false}
+        />,
+        <FlatButton
+          disabled={false}
+          fullWidth={false}
+          keyboardFocused={true}
+          label="Delete"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={true}
+          secondary={false}
+        />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    modal={false}
+    onRequestClose={[Function]}
+    open={false}
+    repositionOnUpdate={true}
+  >
+    Are you sure you want to delete this list
+  </Dialog>
   <div
     className="Gonga"
     style={
@@ -94,49 +152,6 @@ exports[`<ShoppingList /> match a snapshot 1`] = `
         </FloatingActionButton>
       </div>
     </div>
-    <Dialog
-      actions={
-        Array [
-          <FlatButton
-            disabled={false}
-            fullWidth={false}
-            label="Cancel"
-            labelPosition="after"
-            labelStyle={Object {}}
-            onClick={[Function]}
-            onKeyboardFocus={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onTouchStart={[Function]}
-            primary={true}
-            secondary={false}
-          />,
-          <FlatButton
-            disabled={false}
-            fullWidth={false}
-            keyboardFocused={true}
-            label="Delete"
-            labelPosition="after"
-            labelStyle={Object {}}
-            onClick={[Function]}
-            onKeyboardFocus={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onTouchStart={[Function]}
-            primary={true}
-            secondary={false}
-          />,
-        ]
-      }
-      autoDetectWindowHeight={true}
-      autoScrollBodyContent={false}
-      modal={false}
-      onRequestClose={[Function]}
-      open={false}
-      repositionOnUpdate={true}
-    >
-      Are you sure you want to delete this list
-    </Dialog>
     <Card
       expandable={false}
       expanded={null}
