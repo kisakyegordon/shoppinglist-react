@@ -22,16 +22,21 @@ class LoginForm extends Component{
         this.onChange = this.onChange.bind(this);
     }
 
-
+    /**
+     * onSubmit make an API to login into the API, with the form credentials
+     */
     onSubmit(e){
         e.preventDefault();
         superagent
             .post( BASE_URL + LOGIN_URL)
-            .send({ email: this.state.email, password: this.state.password })
             .set('Access-Control-Allow-Origin', '*')
+            .send({ email: this.state.email, password: this.state.password })
             .end((err, res) => {
                 if(err){
+                    console.log("Error: ", err.status);
+                    toast.error("Invalid Login");
                     this.setState({ errorMessage : 'Authentication Failed'}); return;
+                    
                 }
                 localStorage.setItem('token', res.body.access_token );
                 toast.success("Loggedin Successfully");

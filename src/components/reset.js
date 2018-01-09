@@ -63,7 +63,9 @@ class HorizontalLinearStepper extends Component {
             .set('Authorization', 'Bearer '+token)
             .end((err, res) => {
                 if(err){
+                    toast.error("Reset Invalid");
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
+
                 }
                 console.log('password successfully reset');
                 this.props.history.push('/login');

@@ -23,6 +23,10 @@ class RegisterForm extends Component{
     }
 
 
+    /**
+     * onSubmit make an API call with the register credentials and register the user
+     * @param {*} e 
+     */
     onSubmit(e){
         e.preventDefault();
 
@@ -31,7 +35,9 @@ class RegisterForm extends Component{
             .send({ email: this.state.email, country_town: this.state.country_town, password: this.state.password })
             .end((err, res) => {
                 if(err){
+                    toast.error("Invalid Register");
                     this.setState({ errorMessage : 'Authentication Failed'}); return;
+                    
                 }
                 console.log('res.body:', res.body);
                 this.setState({fireRedirect: true});

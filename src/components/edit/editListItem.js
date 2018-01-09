@@ -17,6 +17,9 @@ class EditListItem extends Component{
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * At Initial Loading of the Component - make a query to the API to pick the list item name
+     */
     componentDidMount(){
         let token = localStorage.getItem('token');
         let list_id = this.props.match.params.id;
@@ -30,7 +33,6 @@ class EditListItem extends Component{
                 if(err){
                     this.setState({ errorMessage : 'List Creation Failed'}); return;
                 }
-                console.log('mine:');
                 this.setState({name:res.body.name});
             });
     }
@@ -39,6 +41,10 @@ class EditListItem extends Component{
         this.props.history.goBack();
     }
 
+    /**
+     * This onSubmit method makes an API call to edit the list item
+     * @param {*} e 
+     */
     onSubmit(e){
         e.preventDefault();
         let token = localStorage.getItem('token');

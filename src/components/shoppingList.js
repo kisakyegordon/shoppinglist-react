@@ -28,8 +28,11 @@ class ShoppingList extends Component {
         };
     }
 
+    /**
+     * On Mounting component, make an API to pick an individual list then set
+     * status with its name
+     */
     componentDidMount(){
-        
         let token = localStorage.getItem('token');
         let list_id = this.props.match.params.id;
         superagent
@@ -47,19 +50,31 @@ class ShoppingList extends Component {
         this.handleListItems();
     }
 
+    /**
+     * Handle Dialog box when open
+     */
     handleOpen = (id) => {
         this.setState({open:true});
         this.setState({item_id:id})
     }
 
+    /**
+     * Handle Dialog box when closed
+     */
     handleClose = () => {
         this.setState({open:false});
     }
 
+    /**
+     * Method handling back functionality
+     */
     handleNavigation = () => {
         this.props.history.goBack();
     }
 
+    /**
+     * Handles getting list items and setting them in the items array status
+     */
     handleListItems = () => {
         let token = localStorage.getItem('token');
         let list_id = this.props.match.params.id;
@@ -77,6 +92,9 @@ class ShoppingList extends Component {
             });
     }
 
+    /**
+     * Makes an API call to delete a list item
+     */
     handleDelete = () => {
         let token = localStorage.getItem('token');
         let list_id = this.props.match.params.id;
