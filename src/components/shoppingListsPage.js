@@ -143,7 +143,7 @@ class ShoppingListsPage extends Component{
      /**
       * Handles Search functionality by passing searched key word in the route
       */
-     onSubmit() {
+     onSubmit = () =>  {
 
         let token = localStorage.getItem('token');
         superagent
@@ -195,9 +195,13 @@ class ShoppingListsPage extends Component{
                     return;
                 }
 
-                this.setState({lists:res.body.lists});
-                this.setState({next_url:res.body.urls.next_url})
-                this.setState({prev_url:res.body.urls.prev_url})
+                this.setState({
+                    lists:res.body.lists, 
+                    next_url:res.body.urls.next_url, 
+                    prev_url:res.body.urls.prev_url
+                });
+                // this.setState({next_url:res.body.urls.next_url})
+                // this.setState({prev_url:res.body.urls.prev_url})
             
                 res.body.lists.owner?localStorage.setItem('user_id', res.body.lists.owner):console.log("###### NO OWNER FOUND");
             });
